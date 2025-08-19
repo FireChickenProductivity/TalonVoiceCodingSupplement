@@ -207,9 +207,9 @@ class CppActions:
 				MAP_CHANGE = 'emplace',
 				MAP_REMOVE = 'erase',
 				MAP_GET = 'at',
-				MAP_CONTAINS = create_described_snippet_insertion('.count(', ') != 0'),
+				MAP_CONTAINS = create_described_insert_between('.count(', ') != 0'),
 
 				SET_ADD = 'insert',
 				SET_REMOVE = 'erase',
-				SET_CONTAINS = create_described_snippet_insertion('.count(', ') != 0'),
+				SET_CONTAINS = create_described_insert_between('.count(', ') != 0'),
 			)
