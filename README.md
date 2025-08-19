@@ -7,7 +7,7 @@ Unlike the community structure that has functionality separated on a per languag
 Functionality intended to be used by multiple features is in the `shared` directory. Note that `shared` does not provide any commands. 
 
 # Contributing
-If you want to contribute, please submit an issue before submitting any code so you can get feedback if your proposed changes are suitable for this project. Anything that makes it easier to code by voice that is not too optimized for a single user's workflow may belong here.
+If you want to contribute, please submit an issue before submitting any code so you can get feedback on if your proposed changes are suitable for this project. Anything that makes it easier to code by voice that is not too optimized for a single user's workflow may belong here.
 
 Please separate proposed changes into small pull requests to make review easier. A gigantic pull request that would take serious time to review may be ignored.
 
