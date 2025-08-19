@@ -9,7 +9,7 @@ The grammar and implementation are currently not stable and may be revised in re
 The following community actions:
 - user.code_operator_object_accessor
 - user.insert_between
-- user.snippet_insert
+- user.insert_snippet
 
 # Usage
 Dictate the name of a data structure followed by the operation you want to perform to use a data structure operation. For instance, saying `ray add` in python inserts `.append()` and in javascript inserts `.push()`.

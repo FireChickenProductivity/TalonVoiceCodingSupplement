@@ -75,6 +75,8 @@ javascript_context = Context()
 javascript_context.matches = r'''
 code.language: javascript
 code.language: typescript
+code.language: javascriptreact
+code.language: typescriptreact
 '''
 
 def code_generic_subscript():
@@ -160,7 +162,7 @@ class CppActions:
 				LANGUAGE = language,
 				LIST_ADD = 'emplace_back',
 				LIST_POP = 'pop_back',
-				LIST_CHANGE = lambda: actions.user.snippet_insert(".at($1) = $0"),
+				LIST_CHANGE = lambda: actions.user.insert_snippet(".at($1) = $0"),
 				LIST_REMOVE = 'erase',
 				LIST_GET = 'at',
 
