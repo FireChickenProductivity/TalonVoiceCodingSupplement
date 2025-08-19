@@ -65,6 +65,7 @@ module = Module()
 
 module.list('vcs_common_data_structure_name', desc='Active language list of common data structure names')
 module.list('vcs_common_data_structure_operation', desc='Active language list of common data structure operation names')
+module.tag('vcs_common_data_structure')
 
 @module.action_class
 class Actions:

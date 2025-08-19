@@ -2,7 +2,7 @@
 Under construction talonvoice programming supplemental configuration for useful ideas deemed unsuitable for community. 
 
 # Structure
-Unlike the community structure that has functionality separated on a per language basis, the directories here contain self contained functionality. See the readme for each directory for documentation.
+Unlike the community structure that has functionality separated on a per language basis, the directories here contain self contained functionality. See the readme for each directory for documentation. Every module's features requires a tag activation so that you opt into features as you want them (see tags.talon). 
 
 # Contributing
 If you want to contribute, please submit an issue before submitting any code so you can get feedback if your proposed changes are suitable for this project. Anything that makes it easier to code by voice that is not too optimized for a single user's workflow may belong here.

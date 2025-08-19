@@ -10,6 +10,7 @@ The following community actions:
 - user.code_operator_object_accessor
 - user.insert_between
 - user.insert_snippet
+- user.help_list
 
 # Usage
 Dictate the name of a data structure followed by the operation you want to perform to use a data structure operation. For instance, saying `ray add` in python inserts `.append()` and in javascript inserts `.push()`.
