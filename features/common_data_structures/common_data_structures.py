@@ -71,19 +71,19 @@ module.tag('vcs_common_data_structure')
 @module.action_class
 class Actions:
 	def vcs_data_structures_update():
-		'''Updates the current methods object based on the active programming language. This should be overwritten on a per language basis to update the global structures variable if actions.user.vcs_data_structures_should_update with the name of the language returns true'''
+		'''Updates the current structures object based on the active programming language. This should be overwritten on a per language basis to update the global structures variable if actions.user.vcs_data_structures_should_update with the name of the language returns true'''
 		pass
 
 	def vcs_data_structures_should_update(language: str):
-		'''Checks if the methods object should be updated based on the active programming language'''
+		'''Checks if the structures object should be updated based on the active programming language'''
 		return not structures or structures['LANGUAGE'] != language
 
 	def vcs_data_structures_get() -> Optional[DataStructures]:
-		'''Returns the current methods object'''
+		'''Returns the current structures object'''
 		return structures
 
 	def vcs_common_data_structure_insert(structure_name: str, operation_name: str):
-		'''Inserts a method with the specified name'''
+		'''Inserts an operation with the specified name'''
 		# Update the structures variable if the language has changed or this is the first call
 		actions.user.vcs_data_structures_update()
 			
@@ -92,7 +92,7 @@ class Actions:
 
 		combined_name = f"{structure_name}_{operation_name}"
 		if combined_name not in structures:
-			raise ValueError(f" '{combined_name}' not found in methods object.")
+			raise ValueError(f" '{combined_name}' not found in structures object.")
 		operation = structures[combined_name]
 		# If the action is callable, just call it. Otherwise assume it is a method name
 		if callable(operation):
