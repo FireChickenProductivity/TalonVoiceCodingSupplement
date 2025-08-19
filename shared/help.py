@@ -13,7 +13,7 @@ def help_gui(gui):
 	for line in help_text:
 		gui.text(line)
 	gui.line()
-	if gui.button("Close"):
+	if gui.button("sup help close"):
 		actions.user.vcs_help_clear()
 
 module = Module()
