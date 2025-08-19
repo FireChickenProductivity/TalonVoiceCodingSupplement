@@ -10,16 +10,23 @@ class Actions:
 	def vcs_help_data_structures():
 		"""Shows the current vcs help interface for the common data structure support"""
 		title = "Common Data Structures"
-		actions.user.vcs_data_structures_update()
+		note = "note: this list does not update automatically when the context changes"
+		try:
+			actions.user.vcs_data_structures_update()
+		# Not implemented means the active context does not have a common data structures implementation
+		except NotImplementedError:
+			pass
 		structures: Optional[TypedDict] = actions.user.vcs_data_structures_get()
 		if structures is None:
-			actions.user.vcs_help_set(title, ["No operations are available for the current context."])
+			actions.user.vcs_help_set(title, [note, "No operations are available for the current context."])
 		else:
 			help_text = []
 			for name, operation in structures.items():
 				if callable(operation):
-					help_text.append(f"{name}(): {operation.__doc__ or 'No documentation available.'}")
+					operation_text = operation.__doc__ or 'No documentation available.'
 				else:
-					help_text.append(f"{name}: {operation}")
+					operation_text = operation
+				help_text.append(f"{name}: {operation_text}")
 			help_text.sort()
+			help_text.insert(0, note)
 			actions.user.vcs_help_set(title, help_text)
