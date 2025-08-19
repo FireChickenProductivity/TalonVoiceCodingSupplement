@@ -1,34 +1,64 @@
+# Adds support for dictating common data structure operations to prevent needing to memorize as many language specific details
+# A DataStructures class is provided for organizing operation implementations for a given language
+# The vcs_methods_update action must be overwritten for each language to provide the appropriate implementations
 from talon import Module, actions, Context
 
 from typing import TypedDict, Callable, Optional
 
+# Defines the type for operator implementations
 Operator = str | Callable[[], None]
 
 class DataStructures(TypedDict, total=False):
+	"""Organizes common data structure operations for a specific programming language"""
+
+	# The name of the programming language. 
 	LANGUAGE: str
 
+	# These operators are for dynamic array data structures like Python's list and Java's ArrayList
+	# The operation for adding an element to the end of a list
 	LIST_ADD: Operator
+	# The operation for removing the last element from a list
 	LIST_POP: Operator
+	# The operation for changing an element at a specific index in a list
 	LIST_CHANGE: Operator
+	# The operation for removing an element at a specific index in a list
 	LIST_REMOVE: Operator
+	# The operation for getting an element at a specific index in a list
 	LIST_GET: Operator
+	# The operation for creating a new list
 	LIST_NEW: Operator
 
+	# These operators are for associative map data structures like Python's dict and JavaScript's Map
+	# The operation for adding a key-value pair to a map
 	MAP_ADD: Operator
+	# The operation for changing the value of associated with a specific key in a map
 	MAP_CHANGE: Operator
+	# The operation for removing a key-value pair from a map
 	MAP_REMOVE: Operator
+	# The operation for getting the value associated with a specific key in a map
 	MAP_GET: Operator
+	# The operation for checking if a key exists in a map
 	MAP_CONTAINS: Operator
+	# The operation for creating a new map
 	MAP_NEW: Operator
 
+	# These operators are for set data structures like Python's set and Java's Set
+	# The operation for adding an element to a set
 	SET_ADD: Operator
+	# The operation for removing an element from a set
 	SET_REMOVE: Operator
+	# The operation for checking if an element exists in a set
 	SET_CONTAINS: Operator
+	# The operation for creating a new set
 	SET_NEW: Operator
 
+	# These operators are for tuple data structures like Python's tuple
+	# The operation for creating a new tuple
 	TUPLE_NEW: Operator
+	# The operation for getting an element at a specific index in a tuple
 	TUPLE_GET: Operator
 
+# Global variable to hold the current DataStructures. This should not be accessed directly outside this file
 structures: Optional[DataStructures] = None
 
 module = Module()
@@ -39,7 +69,7 @@ module.list('vcs_common_data_structure_operation', desc='Active language list of
 @module.action_class
 class Actions:
 	def vcs_methods_update():
-		'''Updates the current methods object based on the active programming language'''
+		'''Updates the current methods object based on the active programming language. This should be overwritten on a per language basis to update the global structures variable if actions.user.vcs_methods_should_update with the name of the language returns true'''
 		pass
 
 	def vcs_methods_should_update(language: str):
@@ -52,6 +82,7 @@ class Actions:
 
 	def vcs_common_data_structure_insert(structure_name: str, operation_name: str):
 		'''Inserts a method with the specified name'''
+		# Update the structures variable if the language has changed or this is the first call
 		actions.user.vcs_methods_update()
 			
 		if structures is None:
@@ -61,14 +92,17 @@ class Actions:
 		if combined_name not in structures:
 			raise ValueError(f" '{combined_name}' not found in methods object.")
 		operation = structures[combined_name]
+		# If the action is callable, just call it. Otherwise assume it is a method name
 		if callable(operation):
 			operation()
 		else:
+			# If the active language has no implementation of code_operator_object_accessor, insert "."
 			try:
 				actions.user.code_operator_object_accessor()
 			except:
 				actions.insert(".")
 			actions.insert(operation)
+			# If we ever support a language where method calls do not use parentheses, we will need a different grammar for this
 			actions.user.insert_between("(", ")")
 
 javascript_context = Context()
@@ -80,9 +114,13 @@ code.language: typescriptreact
 '''
 
 def code_generic_subscript():
+	"""Inserts a subscript"""
 	actions.user.insert_between("[", "]")
 
 def code_generic_subscript_update():
+	"""Inserts a generic subscript update using a snippet"""
+	# This use of snippets does not require a defined .snippet file
+	# $1 is where the cursor will start. The action for moving to the next snippet will next put the cursor at $0.
 	actions.user.insert_snippet("[$1] = $0")
 	
 
