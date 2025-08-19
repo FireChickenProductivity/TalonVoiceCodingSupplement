@@ -4,6 +4,7 @@
 from talon import Module, actions, Context
 
 from typing import TypedDict, Callable, Optional
+from ...shared.described_lambdas import create_described_insert_between, create_described_snippet_insertion
 
 # Defines the type for operator implementations
 Operator = str | Callable[[], None]
@@ -114,16 +115,13 @@ code.language: javascriptreact
 code.language: typescriptreact
 '''
 
-def code_generic_subscript():
-	"""Inserts a subscript"""
-	actions.user.insert_between("[", "]")
+# Inserts a subscript
+code_generic_subscript = create_described_insert_between("[", "]")
 
-def code_generic_subscript_update():
-	"""Inserts a generic subscript update using a snippet"""
-	# This use of snippets does not require a defined .snippet file
-	# $1 is where the cursor will start. The action for moving to the next snippet will next put the cursor at $0.
-	actions.user.insert_snippet("[$1] = $0")
-	
+# This use of snippets does not require a defined .snippet file
+# $1 is where the cursor will start. The action for moving to the next snippet will next put the cursor at $0.
+code_generic_subscript_update = create_described_snippet_insertion("[$1] = $0")
+
 
 @javascript_context.action_class("user")
 class JavascriptActions:
@@ -135,21 +133,21 @@ class JavascriptActions:
 				LIST_ADD = 'push',
 				LIST_POP = 'pop',
 				LIST_CHANGE = code_generic_subscript_update,
-				LIST_REMOVE = lambda: actions.user.insert_between('.splice(', ', 1)'),
+				LIST_REMOVE = create_described_insert_between('.splice(', ', 1)'),
 				LIST_GET = code_generic_subscript,
-				LIST_NEW = lambda: actions.user.insert_between('[', ']'), 
+				LIST_NEW = create_described_insert_between('[', ']'), 
 
 				MAP_ADD = 'set',
 				MAP_CHANGE = 'set',
 				MAP_REMOVE = 'delete',
 				MAP_GET = 'get',
 				MAP_CONTAINS = 'has',
-				MAP_NEW = lambda: actions.user.insert_between('new Map(', ')'),
+				MAP_NEW = create_described_insert_between('new Map(', ')'),
 
 				SET_ADD = 'add',
 				SET_REMOVE = 'delete',
 				SET_CONTAINS = 'has',
-				SET_NEW = lambda: actions.user.insert_between('new Set(', ')'),
+				SET_NEW = create_described_insert_between('new Set(', ')'),
 
 			)
 
@@ -170,20 +168,20 @@ class PythonActions:
 				LIST_CHANGE = code_generic_subscript_update,
 				LIST_REMOVE = 'pop',
 				LIST_GET = code_generic_subscript,
-				LIST_NEW = lambda: actions.user.insert_between('[', ']'),
+				LIST_NEW = create_described_insert_between('[', ']'),
 
 				MAP_ADD = code_generic_subscript_update,
 				MAP_CHANGE = code_generic_subscript_update,
 				MAP_REMOVE = 'pop',
 				MAP_GET = code_generic_subscript,
-				MAP_NEW = lambda: actions.user.insert_between('{', '}'),
+				MAP_NEW = create_described_insert_between('{', '}'),
 
 				SET_ADD = 'add',
 				SET_REMOVE = 'remove',
-				SET_NEW = lambda: actions.user.insert_between('set(', ')'),
+				SET_NEW = create_described_insert_between('set(', ')'),
 
-				TUPLE_NEW = lambda: actions.user.insert_between('(', ')'),
-				TUPLE_GET = lambda: actions.user.insert_between('[', ']'),
+				TUPLE_NEW = create_described_insert_between('(', ')'),
+				TUPLE_GET = code_generic_subscript,
 			)
 
 cpp_context = Context()
@@ -201,7 +199,7 @@ class CppActions:
 				LANGUAGE = language,
 				LIST_ADD = 'emplace_back',
 				LIST_POP = 'pop_back',
-				LIST_CHANGE = lambda: actions.user.insert_snippet(".at($1) = $0"),
+				LIST_CHANGE = create_described_snippet_insertion(".at($1) = $0"),
 				LIST_REMOVE = 'erase',
 				LIST_GET = 'at',
 
@@ -209,9 +207,9 @@ class CppActions:
 				MAP_CHANGE = 'emplace',
 				MAP_REMOVE = 'erase',
 				MAP_GET = 'at',
-				MAP_CONTAINS = lambda: actions.user.insert_between('.count(', ') != 0'),
+				MAP_CONTAINS = create_described_snippet_insertion('.count(', ') != 0'),
 
 				SET_ADD = 'insert',
 				SET_REMOVE = 'erase',
-				SET_CONTAINS = lambda: actions.user.insert_between('.count(', ') != 0'),
+				SET_CONTAINS = create_described_snippet_insertion('.count(', ') != 0'),
 			)
