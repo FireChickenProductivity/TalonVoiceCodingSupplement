@@ -35,7 +35,7 @@ class DataStructures(TypedDict, total=False):
 	# The operation for changing the value of associated with a specific key in a map
 	MAP_CHANGE: Operator
 	# The operation for removing a key-value pair from a map
-	MAP_REMOVE: Operator
+	MAP_POP: Operator
 	# The operation for getting the value associated with a specific key in a map
 	MAP_GET: Operator
 	# The operation for checking if a key exists in a map
@@ -47,7 +47,7 @@ class DataStructures(TypedDict, total=False):
 	# The operation for adding an element to a set
 	SET_ADD: Operator
 	# The operation for removing an element from a set
-	SET_REMOVE: Operator
+	SET_POP: Operator
 	# The operation for checking if an element exists in a set
 	SET_CONTAINS: Operator
 	# The operation for creating a new set
@@ -139,13 +139,13 @@ class JavascriptActions:
 
 				MAP_ADD = 'set',
 				MAP_CHANGE = 'set',
-				MAP_REMOVE = 'delete',
+				MAP_POP = 'delete',
 				MAP_GET = 'get',
 				MAP_CONTAINS = 'has',
 				MAP_NEW = create_described_insert_between('new Map(', ')'),
 
 				SET_ADD = 'add',
-				SET_REMOVE = 'delete',
+				SET_POP = 'delete',
 				SET_CONTAINS = 'has',
 				SET_NEW = create_described_insert_between('new Set(', ')'),
 
@@ -172,12 +172,12 @@ class PythonActions:
 
 				MAP_ADD = code_generic_subscript_update,
 				MAP_CHANGE = code_generic_subscript_update,
-				MAP_REMOVE = 'pop',
+				MAP_POP = 'pop',
 				MAP_GET = code_generic_subscript,
 				MAP_NEW = create_described_insert_between('{', '}'),
 
 				SET_ADD = 'add',
-				SET_REMOVE = 'remove',
+				SET_POP = 'remove',
 				SET_NEW = create_described_insert_between('set(', ')'),
 
 				TUPLE_NEW = create_described_insert_between('(', ')'),
@@ -205,11 +205,11 @@ class CppActions:
 
 				MAP_ADD = 'emplace',
 				MAP_CHANGE = 'emplace',
-				MAP_REMOVE = 'erase',
+				MAP_POP = 'erase',
 				MAP_GET = 'at',
 				MAP_CONTAINS = create_described_insert_between('.count(', ') != 0'),
 
 				SET_ADD = 'insert',
-				SET_REMOVE = 'erase',
+				SET_POP = 'erase',
 				SET_CONTAINS = create_described_insert_between('.count(', ') != 0'),
 			)
