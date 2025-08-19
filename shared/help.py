@@ -35,6 +35,10 @@ class Actions:
 		"""Returns the current vcs help text"""
 		return help_text
 
+	def vcs_help_get_title() -> str:
+		"""Returns the current vcs help title"""
+		return help_title
+
 	def vcs_help_set(title: str, text: list[str]):
 		"""Sets the vcs help text and title"""
 		actions.user.vcs_help_clear()
