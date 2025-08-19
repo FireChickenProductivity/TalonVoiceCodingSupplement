@@ -16,6 +16,8 @@ Dictate the name of a data structure followed by the operation you want to perfo
 
 See the vcs_common_data_structure_name.talon-list file for the list of data structures and the vcs_common_data_structure_operation.talon-list file for the list of operations.
 
+`help common data structures` shows the supported operators. 
+
 # Supported Languages
 The following languages have full support:
 - Python
