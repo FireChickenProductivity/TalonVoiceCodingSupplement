@@ -40,7 +40,7 @@ class Actions:
 		return help_title
 
 	def vcs_help_set(title: str, text: list[str]):
-		"""Sets the vcs help text and title"""
+		"""Shows the vcs help with the desired title and text"""
 		actions.user.vcs_help_clear()
 		global help_title, help_text
 		help_title = title
