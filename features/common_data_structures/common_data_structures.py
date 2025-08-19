@@ -1,6 +1,6 @@
 # Adds support for dictating common data structure operations to prevent needing to memorize as many language specific details
 # A DataStructures class is provided for organizing operation implementations for a given language
-# The vcs_methods_update action must be overwritten for each language to provide the appropriate implementations
+# The vcs_data_structures_update action must be overwritten for each language to provide the appropriate implementations
 from talon import Module, actions, Context
 
 from typing import TypedDict, Callable, Optional
@@ -70,22 +70,22 @@ module.tag('vcs_common_data_structure')
 
 @module.action_class
 class Actions:
-	def vcs_methods_update():
-		'''Updates the current methods object based on the active programming language. This should be overwritten on a per language basis to update the global structures variable if actions.user.vcs_methods_should_update with the name of the language returns true'''
+	def vcs_data_structures_update():
+		'''Updates the current methods object based on the active programming language. This should be overwritten on a per language basis to update the global structures variable if actions.user.vcs_data_structures_should_update with the name of the language returns true'''
 		pass
 
-	def vcs_methods_should_update(language: str):
+	def vcs_data_structures_should_update(language: str):
 		'''Checks if the methods object should be updated based on the active programming language'''
 		return not structures or structures['LANGUAGE'] != language
 
-	def vcs_methods_get() -> Optional[DataStructures]:
+	def vcs_data_structures_get() -> Optional[DataStructures]:
 		'''Returns the current methods object'''
 		return structures
 
 	def vcs_common_data_structure_insert(structure_name: str, operation_name: str):
 		'''Inserts a method with the specified name'''
 		# Update the structures variable if the language has changed or this is the first call
-		actions.user.vcs_methods_update()
+		actions.user.vcs_data_structures_update()
 			
 		if structures is None:
 			raise ValueError("Common Data Structures object is not initialized.")
@@ -125,8 +125,8 @@ code_generic_subscript_update = create_described_snippet_insertion("[$1] = $0")
 
 @javascript_context.action_class("user")
 class JavascriptActions:
-	def vcs_methods_update():
-		if actions.user.vcs_methods_should_update('javascript'):
+	def vcs_data_structures_update():
+		if actions.user.vcs_data_structures_should_update('javascript'):
 			global structures
 			structures = DataStructures(
 				LANGUAGE = 'javascript',
@@ -158,8 +158,8 @@ code.language: python
 
 @python_context.action_class("user")
 class PythonActions:
-	def vcs_methods_update():
-		if actions.user.vcs_methods_should_update('python'):
+	def vcs_data_structures_update():
+		if actions.user.vcs_data_structures_should_update('python'):
 			global structures
 			structures = DataStructures(
 				LANGUAGE = 'python',
@@ -191,9 +191,9 @@ code.language: c
 '''
 @cpp_context.action_class("user")
 class CppActions:
-	def vcs_methods_update():
+	def vcs_data_structures_update():
 		language = 'c++'
-		if actions.user.vcs_methods_should_update(language):
+		if actions.user.vcs_data_structures_should_update(language):
 			global structures
 			structures = DataStructures(
 				LANGUAGE = language,
