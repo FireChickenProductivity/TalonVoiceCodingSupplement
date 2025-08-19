@@ -18,3 +18,5 @@ Each directory should have a README.md file explaining its purpose, how to use i
 Please try to avoid unnecessarily complex code and document anything not straightforward. Keep in mind that reviewers need to make sure that your code is not malware and excessively difficult code to understand may be assumed malicious. 
 
 Prefix everything in the talon global namespace with `vcs_` to avoid conflicts.
+
+When a command needs a prefix to avoid potential conflicts, use `sup`, which is short for "supplemental".
