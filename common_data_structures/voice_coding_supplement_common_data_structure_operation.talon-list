@@ -1,0 +1,9 @@
+list: user.voice_coding_supplement_common_data_structure_operation
+-
+add: ADD
+pop: POP
+change: CHANGE
+remove: REMOVE
+get: GET
+has: HAS
+new: NEW
