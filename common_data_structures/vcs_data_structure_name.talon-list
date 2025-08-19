@@ -1,4 +1,4 @@
-list: user.voice_coding_supplement_common_data_structure_name
+list: user.vcs_common_data_structure_name
 -
 #list is unfortunately a community formatter, so ray is used instead because it is short and this is intended for dynamic array data structures. 
 ray: LIST

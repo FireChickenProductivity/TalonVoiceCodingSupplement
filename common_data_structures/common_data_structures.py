@@ -33,26 +33,26 @@ structures: Optional[DataStructures] = None
 
 module = Module()
 
-module.list('voice_coding_supplement_common_data_structure_name', desc='Active language list of common data structure names')
-module.list('voice_coding_supplement_common_data_structure_operation', desc='Active language list of common data structure operation names')
+module.list('vcs_common_data_structure_name', desc='Active language list of common data structure names')
+module.list('vcs_common_data_structure_operation', desc='Active language list of common data structure operation names')
 
 @module.action_class
 class Actions:
-	def voice_coding_supplement_methods_update():
+	def vcs_methods_update():
 		'''Updates the current methods object based on the active programming language'''
 		pass
 
-	def voice_coding_supplement_methods_should_update(language: str):
+	def vcs_methods_should_update(language: str):
 		'''Checks if the methods object should be updated based on the active programming language'''
 		return not structures or structures['LANGUAGE'] != language
 
-	def voice_coding_supplement_methods_get() -> Optional[DataStructures]:
+	def vcs_methods_get() -> Optional[DataStructures]:
 		'''Returns the current methods object'''
 		return structures
 
-	def voice_coding_supplement_common_data_structure_insert(structure_name: str, operation_name: str):
+	def vcs_common_data_structure_insert(structure_name: str, operation_name: str):
 		'''Inserts a method with the specified name'''
-		actions.user.voice_coding_supplement_methods_update()
+		actions.user.vcs_methods_update()
 			
 		if structures is None:
 			raise ValueError("Common Data Structures object is not initialized.")
@@ -86,8 +86,8 @@ def code_generic_subscript_update():
 
 @javascript_context.action_class("user")
 class JavascriptActions:
-	def voice_coding_supplement_methods_update():
-		if actions.user.voice_coding_supplement_methods_should_update('javascript'):
+	def vcs_methods_update():
+		if actions.user.vcs_methods_should_update('javascript'):
 			global structures
 			structures = DataStructures(
 				LANGUAGE = 'javascript',
@@ -119,8 +119,8 @@ code.language: python
 
 @python_context.action_class("user")
 class PythonActions:
-	def voice_coding_supplement_methods_update():
-		if actions.user.voice_coding_supplement_methods_should_update('python'):
+	def vcs_methods_update():
+		if actions.user.vcs_methods_should_update('python'):
 			global structures
 			structures = DataStructures(
 				LANGUAGE = 'python',
@@ -152,9 +152,9 @@ code.language: c
 '''
 @cpp_context.action_class("user")
 class CppActions:
-	def voice_coding_supplement_methods_update():
+	def vcs_methods_update():
 		language = 'c++'
-		if actions.user.voice_coding_supplement_methods_should_update(language):
+		if actions.user.vcs_methods_should_update(language):
 			global structures
 			structures = DataStructures(
 				LANGUAGE = language,

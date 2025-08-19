@@ -1,4 +1,4 @@
-list: user.voice_coding_supplement_common_data_structure_operation
+list: user.vcs_common_data_structure_operation
 -
 add: ADD
 pop: POP
