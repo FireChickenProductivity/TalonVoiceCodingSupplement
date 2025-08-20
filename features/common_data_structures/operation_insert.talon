@@ -1,0 +1,4 @@
+tag: user.vcs_common_data_structure
+-
+{user.vcs_common_data_structure_name} {user.vcs_common_data_structure_operation}:
+	user.vcs_common_data_structure_insert(vcs_common_data_structure_name, vcs_common_data_structure_operation)
