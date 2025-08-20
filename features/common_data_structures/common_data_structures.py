@@ -24,8 +24,14 @@ class DataStructures(TypedDict, total=False):
 	LIST_CHANGE: Operator
 	# The operation for removing an element at a specific index in a list
 	LIST_REMOVE: Operator
+	# The operation for removing all elements from the list
+	LIST_REMOVE_ALL: Operator
 	# The operation for getting an element at a specific index in a list
 	LIST_GET: Operator
+	# The operation for checking if a list is empty
+	LIST_IS_EMPTY: Operator
+	# the operation for getting the length of the list
+	LIST_LENGTH: Operator
 	# The operation for creating a new list
 	LIST_NEW: Operator
 
@@ -167,6 +173,7 @@ class PythonActions:
 				LIST_POP = 'pop',
 				LIST_CHANGE = code_generic_subscript_update,
 				LIST_REMOVE = 'pop',
+				LIST_REMOVE_ALL = 'clear',
 				LIST_GET = code_generic_subscript,
 				LIST_NEW = create_described_insert_between('[', ']'),
 
@@ -202,6 +209,9 @@ class CppActions:
 				LIST_CHANGE = create_described_snippet_insertion(".at($1) = $0"),
 				LIST_REMOVE = 'erase',
 				LIST_GET = 'at',
+				LIST_REMOVE_ALL = 'clear',
+				LIST_IS_EMPTY = 'empty',
+				LIST_LENGTH = 'size',
 
 				MAP_ADD = 'emplace',
 				MAP_CHANGE = 'emplace',

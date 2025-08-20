@@ -4,6 +4,9 @@ add: ADD
 pop: POP
 change: CHANGE
 remove: REMOVE
+clear: REMOVE_ALL
 get: GET
 has: HAS
+empty: IS_EMPTY
+length: LENGTH
 new: NEW
