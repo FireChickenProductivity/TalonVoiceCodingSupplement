@@ -13,7 +13,7 @@ Please separate proposed changes into small pull requests to make review easier.
 
 Each python file should have a comment at the top explaining its purpose.
 
-Each directory should have a README.md file explaining its purpose, how to use it, what languages are currently supported (if applicable), any dependencies on external actions or other talon constructs including dependencies on community and cursorless. A stability section for modules that may undergo breaking changes is desired explaining which parts might get changed. 
+Each feature directory should have a README.md file explaining the feature's purpose, how to use it, what languages are currently supported (if applicable), any dependencies on external actions or other talon constructs including dependencies on community and cursorless. A stability section for modules that may undergo breaking changes is desired explaining which parts might get changed. 
 
 Please try to avoid unnecessarily complex code and document anything not straightforward. Keep in mind that reviewers need to make sure that your code is not malware and excessively difficult code to understand may be assumed malicious. 
 

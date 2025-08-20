@@ -3,7 +3,7 @@
 This offers support for dictating common data structure operations in various languages with a common grammar to prevent needing to memorize these details.
 
 # Stability
-The grammar and implementation are currently not stable and may be revised in response to user feedback.
+This is a draft, so the grammar and implementation are not stable and may be revised in response to user feedback.
 
 # Dependencies
 The following community actions:
