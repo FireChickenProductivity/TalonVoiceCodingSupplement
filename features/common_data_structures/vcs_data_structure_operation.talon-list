@@ -1,6 +1,7 @@
 list: user.vcs_common_data_structure_operation
 -
 add: ADD
+insert: INSERT
 pop: POP
 change: CHANGE
 remove: REMOVE

@@ -18,6 +18,8 @@ class DataStructures(TypedDict, total=False):
 	# These operators are for dynamic array data structures like Python's list and Java's ArrayList
 	# The operation for adding an element to the end of a list
 	LIST_ADD: Operator
+	# The operation for adding an element at a specific index in a list
+	LIST_INSERT: Operator
 	# The operation for removing the last element from a list
 	LIST_POP: Operator
 	# The operation for changing an element at a specific index in a list
@@ -30,7 +32,7 @@ class DataStructures(TypedDict, total=False):
 	LIST_GET: Operator
 	# The operation for checking if a list is empty
 	LIST_IS_EMPTY: Operator
-	# the operation for getting the length of the list
+	# The operation for getting the length of the list
 	LIST_LENGTH: Operator
 	# The operation for creating a new list
 	LIST_NEW: Operator
@@ -170,6 +172,7 @@ class PythonActions:
 			structures = DataStructures(
 				LANGUAGE = 'python',
 				LIST_ADD = 'append',
+				LIST_INSERT = 'insert',
 				LIST_POP = 'pop',
 				LIST_CHANGE = code_generic_subscript_update,
 				LIST_REMOVE = 'pop',
