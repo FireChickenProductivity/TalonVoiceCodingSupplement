@@ -226,3 +226,39 @@ class CppActions:
 				SET_POP = 'erase',
 				SET_CONTAINS = create_described_insert_between('.count(', ') != 0'),
 			)
+
+java_context = Context()
+java_context.matches = r'''
+code.language: java
+'''
+
+@java_context.action_class("user")
+class JavaActions:
+	def vcs_data_structures_update():
+		if actions.user.vcs_data_structures_should_update('java'):
+			global structures
+			structures = DataStructures(
+				LANGUAGE = 'java',
+				LIST_ADD = 'add',
+				LIST_CHANGE = 'set',
+				LIST_REMOVE = 'remove',
+				LIST_GET = 'get',
+				LIST_INSERT= 'add',
+				LIST_IS_EMPTY= 'isEmpty',
+				LIST_LENGTH= 'size',
+				LIST_REMOVE_ALL= 'clear',
+				LIST_NEW = create_described_insert_between('new ArrayList<>(', ')'),
+
+				MAP_ADD = 'put',
+				MAP_CHANGE = 'put',
+				MAP_POP = 'remove',
+				MAP_GET = 'get',
+				MAP_CONTAINS = 'containsKey',
+				MAP_NEW = create_described_insert_between('new HashMap<>(', ')'),
+
+				SET_ADD = 'add',
+				SET_POP = 'remove',
+				SET_CONTAINS = 'contains',
+				SET_NEW = create_described_insert_between('new HashSet<>(', ')'),
+
+			)
