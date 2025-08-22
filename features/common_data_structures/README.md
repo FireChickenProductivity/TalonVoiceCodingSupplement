@@ -21,6 +21,7 @@ See the vcs_common_data_structure_name.talon-list file for the list of data stru
 # Supported Languages
 The following languages have full support:
 - Python
+- Java
 
 The following languages have partial support:
 - JavaScript
